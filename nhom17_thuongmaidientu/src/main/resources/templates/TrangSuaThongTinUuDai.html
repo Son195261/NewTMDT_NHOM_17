@@ -1,0 +1,142 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Trang quản lý ưu đãi</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./fontawesome-free-5.12.1-web/css/all.min.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        .topnav {
+            overflow: hidden;
+            background-color: #e9e9e9;
+        }
+        
+        .topnav a {
+            float: left;
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+        
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        
+        .topnav a.active {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .topnav .search-container {
+            float: right;
+        }
+        
+        .topnav input[type=text] {
+            padding: 6px;
+            margin-top: 8px;
+            font-size: 17px;
+            border: none;
+        }
+        
+        .topnav .search-container button {
+            float: right;
+            padding: 6px;
+            margin-top: 8px;
+            margin-right: 16px;
+            background: #ddd;
+            font-size: 17px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .topnav .search-container button:hover {
+            background: #ccc;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <div class="container">
+        <div style="padding: 15px;background-color: rgb(255, 104, 104);margin-top: 50px;">
+            <h3 style="color: white;">Trang quản lý ưu đãi</h3>
+        </div>
+        <div class="container" style="margin-top: 15px;">
+            <div class="topnav">
+                <a class="active" th:href="@{/trangchu/quanlyuudai}">Trang Quản lý ưu đãi</a>
+                <div class="search-container">
+                    <form action="">
+                        <input type="text" placeholder="Tìm kiếm sản phẩm.." name="search">
+                        <button type="submit">Tìm kiếm ưu đãi</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div style="padding: 15px;background-color: rgb(253, 94, 94);margin-top: 10px;overflow: auto;">
+            <div style="float: left;width: 30%;padding: 10px;background-color: rgb(116, 255, 116);overflow: auto;">
+                <div>
+                    <h4 th:utext="'Xin chào ' + ${tenquantrivien}"></h4>
+                    <h5>Các chức năng thao tác</h5>
+                </div>
+                <div>
+                    <ul class="list-group list-group-flush">
+                        <a th:href="@{/trangchu/quanlyuudai}" style="text-decoration: none;">
+                            <li class="list-group-item list-group-item-action">Xem ưu đãi</li>
+                        </a>
+
+                        <a th:href="@{/trangchu/quanlyuudai/themuudai}" style="text-decoration: none;">
+                            <li class="list-group-item list-group-item-action">Thêm mới ưu đãi</li>
+                        </a>
+
+                    </ul>
+                </div>
+            </div>
+            <div style="float: left;width: 68%;padding: 10px;background-color: rgb(152, 255, 148);overflow: auto;margin-left: 20px;">
+                <div>
+                    <h4>Sửa thông tin ưu đãi</h4>
+                </div>
+                <div>
+                    <form th:action="@{/trangchu/quanlyuudai/xulysuauudai/{mauudai}(mauudai=${ctuudai.mauudai})}">
+                    	
+                        <label style="margin-top: 20px;">Tên ưu đãi</label>
+                        <input type="text" name="tenuudai" th:value="${ctuudai.tenuudai}" class="form-control">
+                        <label style="margin-top: 20px;">Số tiền ưu đãi</label>
+                        <input type="text" name="sotiengiam" th:value="${ctuudai.sotiengiam}" class="form-control">
+                        
+                        <input style="margin-top: 20px;" type="submit" value="Lưu thông tin" class="btn btn-danger">
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

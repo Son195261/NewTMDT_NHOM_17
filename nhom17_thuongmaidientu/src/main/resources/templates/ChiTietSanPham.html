@@ -1,0 +1,134 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Chi tiết sản phẩm</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <style>
+        body {
+            background-color: white;
+        }
+        
+        i {
+            color: rgb(184, 184, 0);
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <div class="container" style="margin-top: 50px;overflow: auto;background-color: white;">
+        <div style="width: 50%;height: 400px;float: left;">
+            <img th:src="@{${chitietsp.hinhanh}}" alt="" style="width: 100%;height: 400px;">
+        </div>
+        <div style="float: left;width: 50%;">           
+            <div th:if="${chitietsp.noidung} != null">
+	            <h5 style="margin-left: 20px;margin-top: 20px;" th:utext="${chitietsp.tensanpham} + ' ' + ${chitietsp.noidung}"></h5>
+	        </div>	   
+	        <div th:if="${chitietsp.noidung} == null">
+	            <h5 style="margin-left: 20px;margin-top: 20px;" th:utext="${chitietsp.tensanpham}"></h5>
+	        </div>   
+            <div style="margin-left: 20px;margin-top: 10px;">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <div style="margin-left: 20px;margin-top: 10px;border-bottom: 1px solid rgb(177, 177, 177);overflow: auto;">
+                <p style="float: left;"><a href="#binhluan">11 đánh giá</a></p>
+                <p style="float: left;color: blue;margin-left: 20px;">Tên thương hiệu: <span>Đại Việt</span></p>
+            </div>
+            <div style="margin-left: 20px;margin-top: 10px;">
+                <h3 style="color: red;" th:utext="${chitietsp.giaca} + ' đồng'"><u style="font-size: 14px;"></u></h3>
+            </div>
+            <div style="margin-left: 20px;margin-top: 50px;">         
+	            <a th:href="@{/trangchu/xulydatgiohang/{idsanpham}(idsanpham=${idsp})}" class="btn btn-danger" style="padding-left: 75px;padding-right: 75px;margin-top: 15px;">Cho vào giỏ</a>
+            </div>          
+        </div>
+    </div>
+    <!--Các mặt hàng liên quan-->
+    <div class="container" style="margin-top: 50px;">
+        <h2>Các mặt hàng tương tự</h2>
+        <th:block th:each="splq:${sanphamlienquan}">
+        	<div style="float: left;overflow: auto;margin-top: 20px;padding: 10px;width: 25%;">
+	            <a th:href="@{/trangchu/chitietsanpham/{idsanpham}(idsanpham=${splq.masanpham})}"><img th:src="@{${splq.hinhanh}}" style="width: 100%;height: 350px;"></a>
+	        </div>
+        </th:block>
+    </div>
+    
+     <!-- Phần bình luận -->
+    <th:block th:each="dg:${danhgiasanpham}">
+    	<div id="binhluan" class="container" style="margin-top: 10px;padding: 10px;overflow: auto;background-color: rgb(255, 246, 232);">
+	        <div>
+	            <div style="float: left;width: 30%;">
+	                <div style="font-weight: bold;text-align: center;margin-top: 15px;" th:utext="${dg.khachHang_danhgia.tenkh}">
+	                    
+	                </div>
+	                <div style="text-align: center;">
+	                    24 ngày trước
+	                </div>
+	            </div>
+	            <div style="float: left;width: 70%;">
+	                <div style="font-weight: bold;">Đánh giá sản phẩm</div>
+	                <div>
+	                    <div style="float: left;">
+	                        <i class="fas fa-check" style="color: green;"></i>
+	                    </div>
+	                    <div style="float: left;margin-left: 15px;color: green;font-weight: bold;">
+	                        Đã mua hàng
+	                    </div>
+	                </div>
+	                <div style="clear: left;" th:utext="${dg.binhluan}">
+	                    
+	                </div>
+	            </div>
+	        </div>
+    	</div>
+    </th:block>
+
+    <div class="container" style="margin-top: 10px;padding: 10px;overflow: auto;background-color: rgb(255, 246, 232);">
+        <div style="float: left;width: 30%;">
+            <div style="font-weight: bold;text-align: center;margin-top: 15px;">
+                Mai Thái Sơn
+            </div>            
+        </div>
+        <div style="float: left;width: 70%;">
+            <div style="font-weight: bold;">Đánh giá sản phẩm</div>
+            <div>
+                <div style="float: left;">
+                    <i class="fas fa-check" style="color: green;"></i>
+                </div>
+                <div style="float: left;margin-left: 15px;color: green;font-weight: bold;">
+                    Đã mua hàng
+                </div>
+            </div>
+            <div style="clear: left;">
+                <form th:action="@{/trangchu/chitietsanpham/binhluan/{idsanpham}(idsanpham=${idsp})}" method="POST">
+                    <div class="form-group">
+                        <label for="comment">Comment:</label>
+                        <textarea class="form-control" rows="5" id="comment" name="binhluan"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Đánh giá</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+</body>
+
+</html>

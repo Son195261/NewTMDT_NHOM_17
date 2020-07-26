@@ -1,0 +1,122 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Trang quản lý tài khoản</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./fontawesome-free-5.12.1-web/css/all.min.css">
+
+</head>
+
+<body>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <div th:if="${xacnhan} == 'kh'" class="container-fluid" style="margin-top: 100px;padding-left: 50px;padding-right: 50px;">	 
+    	<div class="container main-content list" style="margin-top:15px">
+		  <div th:if="${success}" class="row alert alert-success alert-dismissible">
+		   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    <span aria-hidden="true">×</span>
+		   </button>
+		   <span th:text="${success}"></span>
+		  </div>
+		</div> 
+        <div style="overflow: auto;width: 20%;float: left;">
+            <h5 th:utext="'Tài khoản ' + ${kh.tenkh}"></h5>
+            <ul class="list-group list-group-flush">
+                <a th:href="@{/trangchu/trangquanlytaikhoan}" style="text-decoration: none;">
+                    <li class="list-group-item list-group-item-action">Xem thông tin cá nhân</li>
+                </a>
+                <a th:href="@{/trangchu/trangquanlytaikhoan/trangcapnhat}" style="text-decoration: none;">
+                    <li class="list-group-item list-group-item-action">Sửa đổi thông tin</li>
+                </a>
+                <a th:href="@{/trangchu/trangquanlytaikhoan/trangthaydoimatkhau}" style="text-decoration: none;">
+                    <li class="list-group-item list-group-item-action">Thay đổi mật khẩu</li>
+                </a>
+                <a th:href="@{/trangchu/trangquanlytaikhoan/xoataikhoan}" style="text-decoration: none;">
+                    <li class="list-group-item list-group-item-action">Xóa tài khoản</li>
+                </a>
+            </ul>
+        </div>
+        <div style="overflow: auto;width: 78%;float: left;margin-left: 20px;">
+            <h2>Thông tin khách hàng</h2>
+            <table class="table table-dark table-striped">
+                <thead>
+                    <th>Họ tên</th>
+                    <th>Số điện thoại</th>
+                    <th>Địa chỉ</th>
+                    <th>Email</th>
+                    <th>Mật khẩu</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td th:utext="${kh.tenkh}"></td>
+                        <td th:utext="${kh.sodienthoai}"></td>
+                        <td th:utext="${kh.diachi}"></td>
+                        <td th:utext="${kh.email}"></td>
+                        <td th:utext="${kh.matkhau}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div th:if="${xacnhan} == 'nv'" class="container-fluid" style="margin-top: 100px;padding-left: 50px;padding-right: 50px;">
+    	<div class="container main-content list" style="margin-top:15px">
+		  <div th:if="${success}" class="row alert alert-success alert-dismissible">
+		   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    <span aria-hidden="true">×</span>
+		   </button>
+		   <span th:text="${success}"></span>
+		  </div>
+		</div>
+        <div style="overflow: auto;width: 20%;float: left;">
+            <h5 th:utext="'Tên nhân viên ' + ${nv.tennv}"></h5>
+            <ul class="list-group list-group-flush">
+                <a th:href="@{/trangchu/trangquanlytaikhoan}" style="text-decoration: none;">
+                    <li class="list-group-item list-group-item-action">Xem thông tin cá nhân</li>
+                </a>
+                <a th:href="@{/trangchu/trangquanlytaikhoan/trangcapnhat}" style="text-decoration: none;">
+                    <li class="list-group-item list-group-item-action">Sửa đổi thông tin</li>
+                </a>
+                <a th:href="@{/trangchu/trangquanlytaikhoan/trangthaydoimatkhau}" style="text-decoration: none;">
+                    <li class="list-group-item list-group-item-action">Thay đổi mật khẩu</li>
+                </a>              
+            </ul>
+        </div>
+        <div style="overflow: auto;width: 78%;float: left;margin-left: 20px;">
+            <h2>Thông tin nhân viên</h2>
+            <table class="table table-dark table-striped">
+                <thead>
+                    <th>Tên nhân viên</th>
+                    <th>Số điện thoại</th>
+                    <th>Địa chỉ</th>
+                    <th>Hệ số lương</th>
+                    <th>Mật khẩu</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td th:utext="${nv.tennv}"></td>
+                        <td th:utext="${nv.sodienthoai}"></td>
+                        <td th:utext="${nv.diachi}"></td>
+                        <td th:utext="${nv.hesoluong}"></td>
+                        <td th:utext="${nv.matkhau}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+
+</body>
+
+</html>

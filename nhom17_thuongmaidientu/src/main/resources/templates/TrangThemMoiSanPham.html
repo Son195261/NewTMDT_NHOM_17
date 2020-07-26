@@ -1,0 +1,102 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Trang thêm mới sản phẩm</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./fontawesome-free-5.12.1-web/css/all.min.css">
+
+</head>
+
+<body>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <div class="container">
+        <div style="padding: 15px;background-color: gainsboro;margin-top: 50px;">
+            <h1>Trang thêm mới sản phẩm</h1>
+        </div>
+        <div style="overflow: auto;padding: 10px;">
+            <div style="float: left;overflow: auto;background-color: ghostwhite;padding: 15px;width: 50%;">
+                <div>
+                    <h3>Danh sách loại sản phẩm</h3>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr style="background-color: honeydew;">
+                                <th>Mã loại sản phẩm</th>
+                                <th>Tên loại sản phẩm</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        	<th:block th:each="lsp:${loaisanpham}">
+                        		<tr>
+	                                <td th:utext="${lsp.maloaisanpham}"></td>
+	                                <td th:utext="${lsp.tenloaisanpham}"></td>
+	                            </tr>
+                        	</th:block>                         
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <h3>Danh sách các nhà cung cấp</h3>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr style="background-color: honeydew;">
+                                <th>Mã nhà cung cấp</th>
+                                <th>Tên nhà cung cấp</th>
+                                <th>Số điện thoại</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        	<th:block th:each="nhacc:${nhacungcap}">
+                        		<tr>
+	                                <td th:utext="${nhacc.manhacc}"></td>
+	                                <td th:utext="${nhacc.tennhacc}"></td>
+	                                <td th:utext="${nhacc.sodienthoai}"></td>
+	                            </tr>
+                        	</th:block>                 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div style="float: left;overflow: auto;background-color: honeydew;padding: 15px;margin-left: 20px;width: 48%;">
+                <h3>Điền thông tin mới cho sản phẩm</h3>
+                <div style="background-color: honeydew;padding: 15px;">
+                    <form th:action="@{/trangchu/quanlysanpham/themmoisanpham/xulythemsanpham}">
+                        <label>Tên sản phẩm</label>
+                        <input type="text" name="tensanpham" class="form-control" placeholder="Tên sản phẩm....">
+                        <label style="margin-top: 15px;">Ngày sản xuất</label>
+                        <input type="date" name="ngaysanxuat" class="form-control" placeholder="Ngày sản xuất....">
+                        <label style="margin-top: 15px;">Hạn sử dụng</label>
+                        <input type="date" name="hansudung" class="form-control" placeholder="Hạn sử dụng....">
+                        <label style="margin-top: 15px;">Nội dung (hoặc phụ kiện đi kèm)</label>
+                        <input type="text" name="noidung" class="form-control" placeholder="Nội dung....">
+                        <label style="margin-top: 15px;">Giá cả</label>
+                        <input type="text" name="giaca" class="form-control" placeholder="Giá cả....">
+                        <label style="margin-top: 15px;">Số lượng</label>
+                        <input type="text" name="soluong" class="form-control" placeholder="Số lượng....">
+                        <label style="margin-top: 15px;">Mã loại sản phẩm</label>
+                        <input type="text" name="maloaisanpham" class="form-control" placeholder="Mã loại sản phẩm....">
+                        <label style="margin-top: 15px;">Mã nhà cung cấp</label>
+                        <input type="text" name="manhacungcap" class="form-control" placeholder="Mã nhà cung cấp....">
+                        <label style="margin-top: 15px;">Hình ảnh</label>
+                        <input type="file" name="hinhanh">
+                        <input type="submit" class="btn btn-primary" value="Thêm sản phẩm" style="margin-top: 15px;">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

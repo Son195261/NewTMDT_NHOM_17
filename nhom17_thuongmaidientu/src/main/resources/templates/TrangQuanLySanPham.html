@@ -1,0 +1,138 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Trang quản lý sản phẩm</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./fontawesome-free-5.12.1-web/css/all.min.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        .topnav {
+            overflow: hidden;
+            background-color: #e9e9e9;
+        }
+        
+        .topnav a {
+            float: left;
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+        
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        
+        .topnav a.active {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .topnav .search-container {
+            float: right;
+        }
+        
+        .topnav input[type=text] {
+            padding: 6px;
+            margin-top: 8px;
+            font-size: 17px;
+            border: none;
+        }
+        
+        .topnav .search-container button {
+            float: right;
+            padding: 6px;
+            margin-top: 8px;
+            margin-right: 16px;
+            background: #ddd;
+            font-size: 17px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .topnav .search-container button:hover {
+            background: #ccc;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <div class="container-fluid">
+        <div class="container" style="background-color: rgb(198, 255, 140);padding: 15px;margin-top: 50px;">
+            <h3>Trang quản lý sản phẩm</h3>
+        </div>
+        <div class="container" style="margin-top: 15px;">
+            <div class="topnav">
+                <a class="active" th:href="@{/trangchu/quanlysanpham/themmoisanpham}">Thêm mới sản phẩm</a>
+                <div class="search-container">
+                    <form th:action="@{/trangchu/trangtimkiemsanpham}">
+                        <input type="text" placeholder="Tìm kiếm sản phẩm.." name="tensanpham">
+                        <button type="submit">Tìm kiếm sản phẩm</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <table class="table table-hover" style="margin-top: 20px;">
+            <thead>
+                <tr>
+                    <th>Hình ảnh</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Nội dung</th>
+                    <th>giá cả</th>
+                    <th>Số lượng</th>
+                    <th>Tùy chọn</th>
+                </tr>
+            </thead>
+            <tbody>
+                <th:block th:each="sp:${sanpham}">
+                	<tr>
+	                    <td>
+	                    	<div style="overflow: auto;">
+		                    	<img th:src="@{${sp.hinhanh}}" alt="" style="width: 50px;height: 50px;">
+		                    </div>
+	                    </td>
+	                    <td th:utext="${sp.tensanpham}"></td>
+	                    <td th:utext="${sp.noidung}"></td>
+	                    <td th:utext="${sp.giaca}"></td>
+	                    <td th:utext="${sp.soluong}"></td>
+	                    <td>
+	                        <a th:href="@{/trangchu/chitietsanpham/{idsanpham}(idsanpham=${sp.masanpham})}" class="btn btn-primary">Xem chi tiết</a>
+	                        <a th:href="@{/trangchu/quanlysanpham/suathongtinsanpham/{idsanpham}(idsanpham=${sp.masanpham})}" class="btn btn-success">Sửa thông tin</a>
+	                        <a th:href="@{/trangchu/quanlysanpham/xoasanpham/{idsanpham}(idsanpham=${sp.masanpham})}" class="btn btn-danger">Xóa</a>
+	                    </td>
+                	</tr>
+                </th:block>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>

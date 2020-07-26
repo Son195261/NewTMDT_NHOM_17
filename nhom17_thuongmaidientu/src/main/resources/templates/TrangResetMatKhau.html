@@ -1,0 +1,43 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Trang reset mật khẩu</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <div class="container" style="margin-top: 50px;">
+        <div>
+            <p style="float: left;font-size: 20px;">Chào mừng đến với buymore, đây là trang reset mật khẩu</p>
+            <p style="float: left;margin-left: 200px;padding-top: 5px;">Bạn chưa đăng ký thành viên, hãy <a th:href="@{/trangchu/dangkythongtin}">đăng ký ở đây</a></p>
+        </div>
+        <form th:action="@{/trangchu/trangresetmatkhau/xulyresetmatkhau}" method="POST" style="clear: both;">
+            <label>Email:</label>
+            <input class="form-control" name="email" type="text" placeholder="email...">
+            <br>
+            <label>Mật khẩu mới:</label>
+            <input class="form-control" name="mkmoi" type="text" placeholder="mật khẩu mới...">
+            <br>
+            <label>Mã xác nhận:</label>
+            <input class="form-control" name="maxn" type="text" placeholder="mã xác nhận...">
+            <br>
+            <input type="submit" class="btn btn-danger" value="Đăng nhập">
+        </form>
+    </div>
+
+</body>
+
+</html>

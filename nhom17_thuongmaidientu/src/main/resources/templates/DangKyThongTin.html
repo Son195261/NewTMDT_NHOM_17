@@ -1,0 +1,60 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Session1</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style>
+        body {
+            background-color: rgb(252, 251, 238);
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <div class="container" style="width: 100%;background-color: white;overflow: auto;margin-top: 100px;">
+        <h3 style="padding-top: 20px;padding-left: 20px;">Tạo tài khoản Buy More</h3>
+        <form th:action="@{/trangchu/dangkythongtin/save}" method="POST" th:object="${khachhang}">
+            <div style="width: 50%;float: left;margin-bottom: 20px;padding-left: 20px;">
+                <label>Họ Tên:</label>
+                <input type="text" name="hoten" class="form-control" style="width: 90%;" th:field="*{tenkh}">
+                <label>Số điện thoại:</label>
+                <input type="text" name="sodienthoai" class="form-control" style="width: 90%;" th:field="*{sodienthoai}">
+                <label>Email:</label>
+                <input type="text" name="email" class="form-control" style="width: 90%;" th:field="*{email}">
+                <label>Mật khẩu:</label>
+                <input type="text" name="matkhau" class="form-control" style="width: 90%;" th:field="*{matkhau}">
+            </div>
+            <div style="width: 50%;float: left;margin-bottom: 20px;">
+                <label>Địa chỉ giao nhận:</label>
+                <input type="text" name="diachi" class="form-control" style="width: 90%;" th:field="*{diachi}">
+                <br>
+                <input type="button" class="btn btn-success" value="đăng ký bằng facebook" style="width: 90%;">
+                <label>Nhấn nút đăng ký:</label>
+                <br>
+                <input type="submit" class="btn btn-danger" value="thực hiện đăng ký" style="width: 90%;">
+                <div style="padding-left: 20px;margin-top: 20px;">
+                    <input type="checkbox" class="form-check-input">
+                    <label class="form-check-label">Tôi đồng ý với các điều khoản của buy more</label>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>

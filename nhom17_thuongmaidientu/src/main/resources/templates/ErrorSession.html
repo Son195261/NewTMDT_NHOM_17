@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>You are not logged in</h1>
+	<div class="container main-content list" style="margin-top:15px">
+		  <div th:if="${success}" class="row alert alert-success alert-dismissible">
+		   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    <span aria-hidden="true">×</span>
+		   </button>
+		   <span th:text="${success}"></span>
+		  </div>
+		</div>
+	<a th:href="@{/trangchu}">Quay lại trang chủ</a>
+</body>
+</html>

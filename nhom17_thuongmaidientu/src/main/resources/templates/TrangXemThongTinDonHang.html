@@ -1,0 +1,102 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Chi tiết đơn hàng</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style>
+        body {
+            background-color: rgba(245, 245, 245, 0.5);
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <div class="container-fluid" style="margin-top: 100px;padding-left: 50px;padding-right: 50px;">
+        <div style="overflow: auto;width: 20%;float: left;">
+            <h5 th:utext="'Tài khoản' + ' ' + ${donhang.khachHang_dondathang.tenkh}"></h5>
+            <ul class="list-group list-group-flush">
+                <a th:href="@{/trangchu/trangquanlyvanchuyen/trangxemthongtindonhang/{madh}(madh=${madonhang})}" style="text-decoration: none;">
+                    <li class="list-group-item list-group-item-action">Xem thông tin chi tiết đơn hàng</li>
+                </a>
+            </ul>
+        </div>
+        <div style="float: left;width: 75%;overflow: auto;margin-left: 30px;">
+            <h5 th:utext="'Chi tiết đơn hàng # ' + ${madonhang}"></h5>
+            <h6 style="font-size: 20px;margin-top: 20px;">Thông báo</h6>
+            <div style="background-color: white;border-radius: 5px;padding: 10px;">
+                Chúng tôi vừa bàn giao đơn hàng của quý khách đến đối tác vận chuyển Buy More Team. Đơn hàng của quý khách sẽ được giao trong ngày hôm nay 10/10/2020
+            </div>
+            <h6 style="font-size: 20px;margin-top: 20px;">Địa chỉ người nhận</h6>
+            <div style="background-color: white;border-radius: 5px;padding: 10px;">
+                <h6 style="margin-top: 20px;" th:utext="'Tài khoản' + ' ' + ${donhang.khachHang_dondathang.tenkh}"></h6>
+                <p style="font-size: 13px;" th:utext="'Địa chỉ: ' + ${donhang.khachHang_dondathang.diachi}"></p>
+                <p style="font-size: 13px;" th:utext="'Điện thoại: ' + ${donhang.khachHang_dondathang.sodienthoai}"></p>
+            </div>
+            <h6 style="font-size: 20px;margin-top: 20px;">HÌNH THỨC GIAO HÀNG</h6>
+            <div style="background-color: white;border-radius: 5px;padding: 10px;">
+                <p style="font-size: 13px;">Giao vào Thứ hai, 14/10</p>
+                <p style="font-size: 13px;">Phí vận chuyển: 12.000đ</p>
+            </div>
+            <h6 style="font-size: 20px;margin-top: 20px;">HÌNH THỨC THANH TOÁN</h6>
+            <div style="background-color: white;border-radius: 5px;padding: 10px;">
+                <p style="font-size: 13px;">Thanh toán tiền mặt khi nhận hàng</p>
+            </div>
+
+            <table class="table table-hover" style="background-color: white; margin-top: 20px;">
+                <thead class="thead-white">
+                    <tr>
+                        <th>Sản phẩm</th>
+                        <th>Giá</th>
+                        <th>Số lượng</th>
+                        <th>Giảm giá</th>
+                        <th>Tạm tính</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <th:block th:each="ctdh:${chitietdonhang}">
+                    	<tr>
+	                        <td>
+	                            <div>
+	                                <div style="float: left;overflow: auto;">
+	                                    <img th:src="@{${ctdh.sanPham_chitietDatHang.hinhanh}}" alt="" style="width: 50px;height: 50px;">
+	                                </div>
+	                                <div style="float: left;padding-left: 20px;">
+	                                    <p th:utext="${ctdh.sanPham_chitietDatHang.tensanpham}"></p>
+	                                    <p th:utext="'Cung cấp bởi ' + ${ctdh.sanPham_chitietDatHang.loaisanpham_sp.tenloaisanpham}"></p>
+	                                    <div>
+	                                        <a type="button" class="btn btn-primary" style="color: white;" href="#">Nhận xét</a>
+	                                        <a type="button" class="btn btn-primary" style="color: white;margin-left: 20px;" href="#">Xóa</a>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </td>
+	                        <td th:utext="${ctdh.sanPham_chitietDatHang.giaca} + ' đ'"></td>
+	                        <td th:utext="${ctdh.soluong}"></td>
+	                        <td>0 đ</td>
+	                        <td th:utext="${ctdh.sanPham_chitietDatHang.giaca * ctdh.soluong} + ' đ'"></td>
+                    	</tr>
+                    </th:block>                                    
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+
+</body>
+
+</html>
